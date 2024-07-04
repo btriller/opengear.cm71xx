@@ -1,0 +1,80 @@
+GENERATOR_VERSION: '1.0'
+ANSIBLE_METADATA: |
+    {
+        'metadata_version': '1.1',
+        'status': ['preview'],
+        'supported_by': '<support_group>'
+    }
+
+NETWORK_OS: cm71xx
+RESOURCE: node_description
+COPYRIGHT: Copyright 2019 Red Hat
+LICENSE: gpl-3.0.txt
+
+DOCUMENTATION: |
+  module: cm71xx_node_description
+  version_added: 2.9
+  short_description: 'Manages <xxxx> attributes of <network_os> <resource>.'
+  description: 'Manages <xxxx> attributes of <network_os> <resource>'
+  author: Ansible Network Engineer
+  notes:
+    - 'Tested against <network_os> <version>'
+  options:
+    config:
+      description: The provided configuration
+      type: dict
+      suboptions:
+        model_number:
+          type: str
+          description: The model
+        serial_number:
+          type: str
+          description: The serial number
+        hostname:
+          type: str
+          description: The hostname
+        mac_address:
+          type: str
+          description: The MAC address
+        firmware_version:
+          type: str
+          description: The version of the firmware
+        interfaces:
+          type: list
+          elements: dict
+          description: The interfaces
+          suboptions:
+            name:
+              type: str
+              description: The name of the interface
+            ipv4_address:
+              type: list
+              elements: str
+              description: The IPv4 addresses of the interface
+            ipv6_address:
+              type: list
+              elements: str
+              description: The IPv6 addresses of the interface
+    state:
+      description:
+      - The state the configuration should be left in
+      type: str
+      choices:
+      - merged
+      - replaced
+      - overridden
+      - deleted
+      default: merged
+
+EXAMPLES:
+# - deleted_example_01.txt
+# - merged_example_01.txt
+# - replaced_example_01.txt
+#       disabled:
+#         type: str
+#         description:
+#         - The state
+#         choices:
+#         - false
+#         - true
+#         default: false
