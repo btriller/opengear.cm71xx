@@ -26,7 +26,7 @@ class HttpApi(HttpApiBase):
         self.path = '/api/v1.1/'
 
     def login(self, username, password):
-        login_path = 'sessions/'
+        login_path = 'sessions'
         data = {'username': username, 'password': password}
         response = self.send_request(data, login_path, 'POST')
         self.connection._auth = {'Authorization': 'Token ' + response['session']}
@@ -43,14 +43,8 @@ class HttpApi(HttpApiBase):
 
     def logout(self):
         logout_path = 'sessions/self'
-        self.send_request(None, logout_path, method='DELETE')
+        print(self.send_request(None, logout_path, method='DELETE'), file=open('/tmp/logout', 'w'))
         self.connection._auth = None
-
-    def _get_device_info_v2(self):
-        endpoints = ['hostname', 'serial_number', 'model_name']
-        for endpoint in endpoints:
-            self._device_info[endpoint] = self.send_request(None, 'system/' + endpoint)['system_' + endpoint][endpoint]
-        return self._device_info
 
     def _get_device_info_v1(self):
         node_description_reply = self.send_request(None, 'nodeDescription')
@@ -70,10 +64,7 @@ class HttpApi(HttpApiBase):
         device_info['rest_api_version'] = version_reply['rest_api_version']
         self._device_info = device_info
 
-        if self.path == '/api/v2':
-            return self._get_device_info_v2()
-        else:
-            return self._get_device_info_v1()
+        return self._get_device_info_v1()
 
     def get_capabilities(self):
         result = {'device_info': self.get_device_info()}

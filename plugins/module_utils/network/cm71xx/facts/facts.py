@@ -13,11 +13,13 @@ from ansible_collections.opengear.cm71xx.plugins.module_utils.network.cm71xx.arg
 from ansible_collections.ansible.netcommon.plugins.module_utils.network.common.facts.facts import (
     FactsBase,
 )
+from ansible_collections.opengear.cm71xx.plugins.module_utils.network.cm71xx.facts.groups.groups import GroupsFacts
 from ansible_collections.opengear.cm71xx.plugins.module_utils.network.cm71xx.facts.users.users import UsersFacts
 
 
 FACT_LEGACY_SUBSETS = {}
 FACT_RESOURCE_SUBSETS = dict(
+    groups=GroupsFacts,
     users=UsersFacts,
 )
 
