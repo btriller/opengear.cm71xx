@@ -1,0 +1,58 @@
+GENERATOR_VERSION: '1.0'
+ANSIBLE_METADATA: |
+    {
+        'metadata_version': '1.1',
+        'status': ['preview'],
+        'supported_by': '<support_group>'
+    }
+
+NETWORK_OS: cm71xx
+RESOURCE: system
+COPYRIGHT: Copyright 2019 Red Hat
+LICENSE: gpl-3.0.txt
+
+DOCUMENTATION: |
+  module: cm71xx_system
+  version_added: 2.9
+  short_description: 'Manages <xxxx> attributes of <network_os> <resource>.'
+  description: 'Manages <xxxx> attributes of <network_os> <resource>'
+  author: Ansible Network Engineer
+  notes:
+    - 'Tested against <network_os> <version>'
+  options:
+    config:
+      description: The provided configuration
+      type: dict
+      suboptions:
+        etc_version:
+          type: str
+          description: The version of etc
+        rest_api_version:
+          type: str
+          description: The version of REST API
+        firmware_version:
+          type: str
+          description: The version of the firmware
+    state:
+      description:
+      - The state the configuration should be left in
+      type: str
+      choices:
+      - merged
+      - replaced
+      - overridden
+      - deleted
+      default: merged
+
+EXAMPLES:
+# - deleted_example_01.txt
+# - merged_example_01.txt
+# - replaced_example_01.txt
+#       disabled:
+#         type: str
+#         description:
+#         - The state
+#         choices:
+#         - false
+#         - true
+#         default: false
